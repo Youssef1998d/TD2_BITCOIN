@@ -16,8 +16,8 @@ with open("wordlistEng.txt", "r") as f:
     lines = f.readlines()
 lot = [ (int (string[i:i+11]), lines[int( string[i:i+11], 2)].strip()) for i in range(0, 128, 11)]
 print("Association:\n", lot)
-mnemonic = " ".join([lot[i][1] for i in range(12)])
-print("Mnemonic:\n", mnemonic)
+mnemonics = " ".join([lot[i][1] for i in range(12)])
+print("Mnemonic:\n", mnemonics)
 print("\n\n")
 
 
@@ -39,7 +39,7 @@ from mnemonic import Mnemonic
 import bip32utils
 
 mnemon = Mnemonic('english')
-seed = mnemon.to_seed(b'athlete fiscal prize organ crush artefact elbow three winter never obey angry')
+seed = mnemon.to_seed(mnemonics)
 print(f'BIP39 Seed: {seed.hex()}\n')
 root_key = bip32utils.BIP32Key.fromEntropy(seed)
 root_public_hex = root_key.PublicKey().hex()
